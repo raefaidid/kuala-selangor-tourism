@@ -254,13 +254,16 @@ ON CONFLICT (username) DO NOTHING;
 CSC584_INDIVIDUAL/
 ├── pom.xml                         — Maven build config, Jetty plugin
 ├── schema.sql                      — Database setup script
+├── Dockerfile                      — Docker image for container-based deployment
+├── DEPLOYMENT.md                   — Step-by-step deployment guide (Railway, Render, VPS)
 ├── mvnw / mvnw.cmd                 — Maven wrapper
+├── visit_malaysia_assets/          — Visit Malaysia 2026 brand source files (logos, mascots)
 ├── src/main/
 │   ├── java/com/uitm/csc584/tourism/
 │   │   ├── filter/
 │   │   │   └── AuthFilter.java     — Protects /admin/* routes
 │   │   ├── model/
-│   │   │   └── Db.java             — JDBC connection factory
+│   │   │   └── Db.java             — JDBC connection factory (env-var driven)
 │   │   └── servlet/
 │   │       ├── AdminLoginServlet.java
 │   │       ├── AdminLogoutServlet.java
@@ -299,9 +302,26 @@ psql -U raefdd -d csc584_tourism -f schema.sql
 # Admin login:  http://localhost:8080/admin/login.jsp
 ```
 
+`Db.java` reads connection details from environment variables (`DB_URL`, `DB_USER`, `DB_PASSWORD`) with local PostgreSQL defaults as fallback, so no code changes are needed when deploying to a cloud environment.
+
 ---
 
-## 9. Assignment Rubric Self-Assessment
+## 9. Deployment
+
+The application is containerised via `Dockerfile` and can be deployed to any platform that supports Docker or Java runtimes. See `DEPLOYMENT.md` for step-by-step instructions covering:
+
+| Platform | Notes |
+|----------|-------|
+| **Railway** | Recommended — auto-deploys from GitHub, free tier, PostgreSQL add-on |
+| **Render** | Free tier; PostgreSQL database expires after 90 days |
+| **DigitalOcean Droplet** | ~USD 6/month; USD 200 credit for new users |
+| **Hetzner VPS** | ~EUR 4/month; cheapest long-term paid option |
+
+Required environment variables on any platform: `DB_URL`, `DB_USER`, `DB_PASSWORD`.
+
+---
+
+## 10. Assignment Rubric Self-Assessment
 
 | Criteria | Target | Implementation |
 |----------|--------|----------------|
@@ -314,7 +334,7 @@ psql -U raefdd -d csc584_tourism -f schema.sql
 
 ---
 
-## 10. Submission Checklist
+## 11. Submission Checklist
 
 - [ ] All 6 public pages functional and linked from navbar
 - [ ] Gallery has exactly 8 images
@@ -334,4 +354,4 @@ psql -U raefdd -d csc584_tourism -f schema.sql
 
 ---
 
-*Document last updated: 2026-06-30*
+*Document last updated: 2026-06-30 — v1.0.0*
