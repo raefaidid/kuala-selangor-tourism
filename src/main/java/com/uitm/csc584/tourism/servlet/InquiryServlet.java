@@ -37,6 +37,20 @@ public class InquiryServlet extends HttpServlet {
             return;
         }
 
+        java.util.List<String> errors = new java.util.ArrayList<>();
+        if (!isValidName(name.trim()))
+            errors.add("Name may only contain letters, spaces, hyphens, or apostrophes (2–100 characters).");
+        if (!isValidContactNumber(contactNumber.trim()))
+            errors.add("Contact number must be a valid Malaysian phone number (e.g. 0123456789 or +60123456789).");
+        if (!isValidEmail(email.trim()))
+            errors.add("Please enter a valid email address.");
+
+        if (!errors.isEmpty()) {
+            request.setAttribute("error", String.join(" ", errors));
+            request.getRequestDispatcher("/contact.jsp").forward(request, response);
+            return;
+        }
+
         try (Connection conn = Db.getConnection();
              PreparedStatement ps = conn.prepareStatement(INSERT_SQL)) {
 
@@ -59,5 +73,19 @@ public class InquiryServlet extends HttpServlet {
 
     private boolean isBlank(String value) {
         return value == null || value.isBlank();
+    }
+
+    private boolean isValidName(String name) {
+        return name.matches("[a-zA-Z\\s'\\-]{2,100}");
+    }
+
+    // Accepts formats: 01x-xxxxxxx, 01xxxxxxxxx, +601xxxxxxxxx, 601xxxxxxxxx
+    private boolean isValidContactNumber(String number) {
+        String digits = number.replaceAll("[\\s\\-]", "");
+        return digits.matches("(\\+?60|0)[1-9][0-9]{7,9}");
+    }
+
+    private boolean isValidEmail(String email) {
+        return email.matches("^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$");
     }
 }
