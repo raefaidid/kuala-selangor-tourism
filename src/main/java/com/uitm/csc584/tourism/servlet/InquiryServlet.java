@@ -52,7 +52,7 @@ public class InquiryServlet extends HttpServlet {
             request.getRequestDispatcher("/contact.jsp").forward(request, response);
 
         } catch (SQLException e) {
-            request.setAttribute("error", "A database error occurred. Please try again later.");
+            request.setAttribute("error", "DB Error: " + e.getMessage());
             request.getRequestDispatcher("/contact.jsp").forward(request, response);
         }
     }
