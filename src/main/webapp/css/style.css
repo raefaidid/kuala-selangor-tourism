@@ -1,0 +1,741 @@
+/* ===================================================
+   KUALA SELANGOR TOURISM
+   Theme: Visit Malaysia 2026 Brand Identity
+   Colors sourced from VM2026_Guidelines.pdf
+   =================================================== */
+
+/* ----- Google Fonts (web-safe equivalents)
+   DIN Bold Italic 2014 → Barlow Condensed (headings)
+   Filson Medium        → Lato (body copy)          ----- */
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,700;1,800&family=Lato:wght@300;400;700;900&display=swap');
+
+/* ----- VM2026 Official Brand Palette ----- */
+:root {
+    /* VM2026 Primary 8 colours */
+    --vm-blue:        #2054A3;
+    --vm-red:         #EB2226;
+    --vm-teal:        #03B1A8;
+    --vm-yellow:      #FBBE14;
+    --vm-purple:      #66308D;
+    --vm-navy:        #213E7C;
+    --vm-green:       #8EC440;
+    --vm-dark-red:    #CA2029;
+
+    /* Role-mapped tokens */
+    --primary:        #213E7C;   /* VM navy — navbar, headings */
+    --secondary:      #2054A3;   /* VM blue — secondary elements */
+    --accent:         #FBBE14;   /* VM yellow — CTA, highlights */
+    --accent-red:     #EB2226;   /* VM red — buttons, badges */
+    --accent-teal:    #03B1A8;   /* VM teal — section accents */
+    --accent-green:   #8EC440;   /* VM green — status, tags */
+
+    --light-bg:       #f0f6ff;
+    --text-dark:      #1c2538;
+    --text-muted:     #5a6478;
+    --white:          #ffffff;
+}
+
+/* ----- Base ----- */
+*  { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Lato', 'Segoe UI', Tahoma, sans-serif;
+    font-weight: 400;
+    color: var(--text-dark);
+    background-color: var(--white);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main { flex: 1; }
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Barlow Condensed', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
+
+a { color: var(--secondary); text-decoration: none; }
+a:hover { color: var(--accent-red); }
+
+/* ===================================================
+   VM2026 SIGNATURE 8-COLOUR STRIPE
+   Represents the 8 brand colours of Visit Malaysia
+   =================================================== */
+.vm-stripe {
+    height: 6px;
+    background: linear-gradient(to right,
+        var(--vm-blue)     0%    12.5%,
+        var(--vm-red)      12.5% 25%,
+        var(--vm-teal)     25%   37.5%,
+        var(--vm-yellow)   37.5% 50%,
+        var(--vm-purple)   50%   62.5%,
+        var(--vm-navy)     62.5% 75%,
+        var(--vm-green)    75%   87.5%,
+        var(--vm-dark-red) 87.5% 100%);
+    flex-shrink: 0;
+}
+
+/* ===================================================
+   NAVBAR
+   =================================================== */
+.navbar {
+    background-color: var(--primary) !important;
+    box-shadow: 0 2px 10px rgba(33, 62, 124, 0.35);
+    padding: 0.6rem 0;
+}
+
+.navbar-brand {
+    display: flex !important;
+    align-items: center;
+    gap: 0.65rem;
+    color: var(--white) !important;
+    font-family: 'Barlow Condensed', Arial, sans-serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    letter-spacing: 0.5px;
+}
+
+.navbar-brand .vm-logo {
+    height: 38px;
+    width: auto;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.navbar-brand .brand-sep {
+    width: 1px;
+    height: 28px;
+    background: rgba(255,255,255,0.35);
+    flex-shrink: 0;
+}
+
+.navbar-brand .brand-name { color: var(--white); }
+.navbar-brand .brand-name span { color: var(--accent); }
+
+.nav-link {
+    color: rgba(255,255,255,0.88) !important;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    padding: 0.5rem 0.9rem !important;
+    border-radius: 4px;
+    transition: color 0.2s, background 0.2s;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--accent) !important;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ===================================================
+   HERO SECTION
+   =================================================== */
+.hero {
+    position: relative;
+    height: 88vh;
+    min-height: 520px;
+    background-image: url('https://picsum.photos/seed/kuala-selangor-sky/1600/900');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+/* Deep VM navy-to-blue gradient overlay */
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(33, 62, 124, 0.82) 0%,
+        rgba(32, 84, 163, 0.70) 60%,
+        rgba(3, 177, 168, 0.55) 100%
+    );
+}
+
+.hero-content {
+    position: relative;
+    z-index: 3;
+    color: var(--white);
+    padding: 0 1.5rem;
+    max-width: 800px;
+}
+
+.hero-content h1 {
+    font-family: 'Barlow Condensed', Arial, sans-serif;
+    font-style: italic;
+    font-weight: 800;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    text-shadow: 0 3px 12px rgba(0,0,0,0.45);
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.hero-content p {
+    font-family: 'Lato', sans-serif;
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    font-weight: 300;
+    opacity: 0.93;
+    margin-bottom: 2rem;
+    line-height: 1.75;
+}
+
+/* Sun Bear mascot — vertically centred, sized to match hero h1 */
+.hero-mascot {
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    /* clamp mirrors the h1 font-size scale so mascot grows with the title */
+    height: clamp(120px, 14vw, 220px);
+    width: auto;
+    z-index: 2;
+    filter: drop-shadow(-4px 0 16px rgba(0,0,0,0.30));
+    pointer-events: none;
+}
+
+@media (max-width: 991px) { .hero-mascot { display: none; } }
+
+/* Hero badge pill */
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background-color: var(--accent);
+    color: var(--text-dark);
+    font-family: 'Lato', sans-serif;
+    font-weight: 900;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 0.35rem 1.1rem;
+    border-radius: 20px;
+    margin-bottom: 1.25rem;
+}
+
+/* ===================================================
+   SECTION TITLES
+   =================================================== */
+.section-title {
+    font-family: 'Barlow Condensed', Arial, sans-serif;
+    font-weight: 800;
+    font-size: 2.2rem;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.section-subtitle {
+    font-family: 'Lato', sans-serif;
+    color: var(--text-muted);
+    margin-bottom: 2.5rem;
+    font-size: 1.05rem;
+    font-weight: 300;
+}
+
+/* VM-coloured rainbow divider instead of plain bar */
+.title-divider {
+    width: 70px;
+    height: 4px;
+    border: none;
+    border-radius: 2px;
+    background: linear-gradient(to right, var(--vm-blue), var(--vm-teal), var(--vm-yellow), var(--vm-red));
+    margin: 0.75rem auto 0.75rem auto;
+}
+
+/* ===================================================
+   INFO STRIP  (home page)
+   =================================================== */
+.info-strip {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    padding: 2.5rem 0;
+    position: relative;
+}
+
+.info-strip::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(to right,
+        var(--vm-yellow), var(--vm-red), var(--vm-teal), var(--vm-green));
+}
+
+.info-card { text-align: center; color: var(--white); padding: 1rem; }
+
+.info-card i {
+    font-size: 2.2rem;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+    display: block;
+}
+
+.info-card h5 {
+    font-family: 'Barlow Condensed', Arial, sans-serif;
+    font-weight: 700;
+    font-size: 1.15rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.3rem;
+}
+
+.info-card p { font-size: 0.88rem; opacity: 0.83; margin: 0; }
+
+/* ===================================================
+   FEATURE CARDS  (Activities & Accommodation)
+   =================================================== */
+.feature-card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(33, 62, 124, 0.12);
+    transition: transform 0.25s, box-shadow 0.25s;
+    height: 100%;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 32px rgba(33, 62, 124, 0.20);
+}
+
+.feature-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.feature-card .card-body {
+    padding: 1.25rem 1.5rem 1.5rem;
+}
+
+.feature-card .card-title {
+    font-family: 'Barlow Condensed', Arial, sans-serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--primary);
+    margin-bottom: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.feature-card .card-text {
+    font-family: 'Lato', sans-serif;
+    color: var(--text-muted);
+    font-size: 0.93rem;
+    line-height: 1.65;
+}
+
+/* Top-coloured accent bar on cards */
+.feature-card::before {
+    content: '';
+    display: block;
+    height: 4px;
+    background: linear-gradient(to right, var(--vm-blue), var(--vm-teal));
+    position: absolute;
+    top: 0; left: 0; right: 0;
+}
+.feature-card { position: relative; }
+
+.card-badge {
+    display: inline-block;
+    background-color: var(--vm-yellow);
+    color: var(--text-dark);
+    font-family: 'Lato', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 900;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* ===================================================
+   GALLERY GRID
+   =================================================== */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.25rem;
+}
+
+.gallery-item {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 14px rgba(33, 62, 124, 0.14);
+    aspect-ratio: 4/3;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.35s;
+}
+
+.gallery-item:hover img { transform: scale(1.06); }
+
+.gallery-caption {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 0.75rem 1rem;
+    background: linear-gradient(transparent, rgba(33, 62, 124, 0.80));
+    color: var(--white);
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    font-size: 0.88rem;
+    letter-spacing: 0.3px;
+}
+
+/* ===================================================
+   CONTACT FORM
+   =================================================== */
+.contact-section { background-color: var(--light-bg); }
+
+.inquiry-form-card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 2.5rem;
+    box-shadow: 0 4px 28px rgba(33, 62, 124, 0.11);
+    border-top: 5px solid var(--vm-yellow);
+}
+
+.form-label {
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    color: var(--text-dark);
+    font-size: 0.9rem;
+}
+
+.form-control,
+.form-select {
+    border-radius: 8px;
+    border: 1.5px solid #d0d8e8;
+    padding: 0.6rem 0.85rem;
+    font-family: 'Lato', sans-serif;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--secondary);
+    box-shadow: 0 0 0 3px rgba(32, 84, 163, 0.14);
+}
+
+/* ===================================================
+   BUTTONS
+   =================================================== */
+.btn-primary-custom {
+    background-color: var(--secondary);
+    color: var(--white);
+    border: none;
+    border-radius: 6px;
+    padding: 0.65rem 2rem;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    transition: background 0.2s, transform 0.15s;
+}
+
+.btn-primary-custom:hover {
+    background-color: var(--primary);
+    transform: translateY(-1px);
+    color: var(--white);
+}
+
+.btn-secondary-custom {
+    background-color: transparent;
+    color: var(--secondary);
+    border: 2px solid var(--secondary);
+    border-radius: 6px;
+    padding: 0.65rem 2rem;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    transition: all 0.2s;
+}
+
+.btn-secondary-custom:hover {
+    background-color: var(--secondary);
+    color: var(--white);
+}
+
+/* VM Yellow accent button — used in hero */
+.btn-accent {
+    background-color: var(--accent);
+    color: var(--text-dark);
+    border: none;
+    border-radius: 6px;
+    padding: 0.75rem 2.5rem;
+    font-family: 'Lato', sans-serif;
+    font-weight: 900;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background 0.2s, transform 0.15s;
+}
+
+.btn-accent:hover {
+    background-color: #e6b010;
+    transform: translateY(-1px);
+    color: var(--text-dark);
+}
+
+/* ===================================================
+   ALERT BANNERS
+   =================================================== */
+.alert-success-custom {
+    background-color: #e8f5e9;
+    border-left: 5px solid var(--vm-green);
+    color: #1b5e20;
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    font-family: 'Lato', sans-serif;
+}
+
+.alert-error-custom {
+    background-color: #fdecea;
+    border-left: 5px solid var(--vm-red);
+    color: #7f1d1d;
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    font-family: 'Lato', sans-serif;
+}
+
+/* ===================================================
+   DEVELOPER PAGE
+   =================================================== */
+.developer-card {
+    background: var(--white);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 36px rgba(33, 62, 124, 0.14);
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* Coloured header uses VM gradient */
+.developer-header {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, var(--accent-teal) 100%);
+    padding: 3rem 2rem 5rem;
+    text-align: center;
+    position: relative;
+}
+
+.developer-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 5px;
+    background: linear-gradient(to right,
+        var(--vm-yellow), var(--vm-red), var(--vm-teal), var(--vm-green));
+}
+
+.developer-photo {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid var(--white);
+    box-shadow: 0 4px 20px rgba(33, 62, 124, 0.25);
+    margin-top: -70px;
+}
+
+.developer-body {
+    padding: 1rem 2.5rem 2.5rem;
+    text-align: center;
+}
+
+.developer-name {
+    font-family: 'Barlow Condensed', Arial, sans-serif;
+    font-weight: 800;
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: 0.25rem;
+    text-transform: uppercase;
+}
+
+.developer-id { color: var(--text-muted); font-size: 1rem; margin-bottom: 1.5rem; }
+
+.contact-list { list-style: none; padding: 0; margin: 0; }
+
+.contact-list li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 0.65rem 0;
+    border-bottom: 1px solid #eef1f7;
+    font-size: 0.95rem;
+    font-family: 'Lato', sans-serif;
+}
+
+.contact-list li:last-child { border-bottom: none; }
+.contact-list i { color: var(--secondary); width: 20px; }
+
+/* ===================================================
+   GOOGLE MAPS LINK BUTTON
+   =================================================== */
+.maps-link-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: #4285F4;
+    color: var(--white);
+    border-radius: 6px;
+    padding: 0.7rem 1.75rem;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: background 0.2s;
+    text-decoration: none;
+}
+
+.maps-link-btn:hover { background-color: #2a6fd6; color: var(--white); }
+
+/* ===================================================
+   FOOTER
+   =================================================== */
+footer {
+    background-color: var(--primary);
+    color: rgba(255,255,255,0.78);
+    padding: 0;
+    text-align: center;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.88rem;
+    margin-top: auto;
+}
+
+.footer-stripe {
+    height: 5px;
+    background: linear-gradient(to right,
+        var(--vm-blue)     0%    12.5%,
+        var(--vm-red)      12.5% 25%,
+        var(--vm-teal)     25%   37.5%,
+        var(--vm-yellow)   37.5% 50%,
+        var(--vm-purple)   50%   62.5%,
+        var(--vm-navy)     62.5% 75%,
+        var(--vm-green)    75%   87.5%,
+        var(--vm-dark-red) 87.5% 100%);
+}
+
+.footer-body { padding: 1.5rem 0; }
+footer a { color: var(--accent); }
+footer a:hover { color: var(--white); }
+
+/* ===================================================
+   ADMIN STYLES
+   =================================================== */
+.admin-navbar { background-color: #111827 !important; }
+
+.admin-body { background-color: #f4f6f9; min-height: 100vh; }
+
+.admin-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 2px 16px rgba(33, 62, 124, 0.09);
+}
+
+.stat-card {
+    border-radius: 12px;
+    padding: 1.5rem;
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.stat-card.blue {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+}
+
+.stat-card i { font-size: 2rem; opacity: 0.85; }
+.stat-card .stat-number { font-family: 'Barlow Condensed', Arial, sans-serif; font-size: 2.2rem; font-weight: 800; line-height: 1; }
+.stat-card .stat-label  { font-size: 0.85rem; opacity: 0.88; }
+
+/* ===================================================
+   LOGIN PAGE
+   =================================================== */
+.login-wrapper {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 60%, var(--accent-teal) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.login-card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.22);
+    border-top: 5px solid var(--accent);
+}
+
+.login-logo { text-align: center; margin-bottom: 1.75rem; }
+.login-logo i     { font-size: 3rem; color: var(--secondary); }
+.login-logo h4    { font-family: 'Barlow Condensed', Arial, sans-serif; font-weight: 800; color: var(--primary); margin-top: 0.5rem; text-transform: uppercase; font-size: 1.5rem; }
+.login-logo p     { font-size: 0.88rem; color: var(--text-muted); }
+
+/* ===================================================
+   UTILITIES
+   =================================================== */
+.section-padding    { padding: 5rem 0; }
+.section-padding-sm { padding: 3rem 0; }
+.bg-light-custom    { background-color: var(--light-bg); }
+.text-primary-custom { color: var(--primary) !important; }
+.text-accent         { color: var(--accent) !important; }
+
+/* Page header band — used on all sub-pages */
+.page-header {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 70%, var(--accent-teal) 100%);
+    padding: 4rem 0 3rem;
+    text-align: center;
+    color: white;
+    position: relative;
+}
+
+.page-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 5px;
+    background: linear-gradient(to right,
+        var(--vm-yellow), var(--vm-red), var(--vm-teal), var(--vm-purple));
+}
+
+.page-header h1 {
+    font-family: 'Barlow Condensed', Arial, sans-serif;
+    font-weight: 800;
+    font-style: italic;
+    font-size: 2.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.page-header p { opacity: 0.88; font-size: 1.05rem; font-weight: 300; }
